@@ -1,0 +1,276 @@
+.esri-view {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* #overviewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+} */
+
+#overviewDiv {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid black; */
+    z-index: 1;
+    overflow: hidden;
+}
+
+#extentDiv {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 2;
+}
+
+
+/* .container-map {
+    overflow: hidden;
+} */
+
+.btn-circle {
+    width: 40px;
+    height: 40px;
+    padding: inherit !important;
+    line-height: 46px;
+}
+
+.right-tool-top {
+    top: 20PX;
+    right: 25px;
+}
+
+.right-tool-w {
+    width: auto;
+}
+
+.mdc-text-field--filled .mat-mdc-floating-label,
+.mat-mdc-select-value-text,
+.mdc-text-field .mdc-floating-label,
+.mat-label,
+input::file-selector-button,
+.mat-mdc-form-field-type-mat-select.mat-form-field-appearance-fill .mat-mdc-floating-label,
+.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control,
+.mdc-list-item__primary-text,
+.mdc-floating-label {
+
+    font-size: 14px !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+    display: none !important
+}
+
+.btn-light {
+    --bs-btn-color: #000;
+    --bs-btn-bg: #f8f9fa !important;
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #f8f9fa;
+    --bs-btn-disabled-border-color: #f8f9fa;
+    background-color: #f8f9fa !important;
+}
+
+.modal-overview {
+    width: 200px;
+    height: 200px;
+    top: 65px;
+    right: 30px;
+}
+
+.modal-data {
+    width: 420px;
+    /*height:calc(100% - 120px);*/
+    height: auto;
+    max-height: calc(100% - 80px);
+    top: 40px;
+    right: 30px;
+    overflow: hidden;
+    z-index: 1;
+
+}
+
+.modal-hv {
+    height: calc(300px) !important;
+    overflow-y: scroll !important;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+
+    height: var(--mat-toolbar-standard-height, 30px);
+    font-size: 14px;
+}
+
+.mat-toolbar-multiple-rows {
+
+    min-height: var(--mat-toolbar-standard-height, 30px);
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+}
+
+.mat-mdc-select,
+.mat-mdc-option {
+    font-size: 14px !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+    display: none
+}
+
+.btn-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 8px !important;
+}
+
+.mat-divider {
+
+    border-top-color: #e8eaeb;
+}
+
+.btn-light {
+    --bs-btn-color: #838383;
+}
+
+.border-secondary {
+
+    border-color: rgb(224 226 236) !important;
+}
+
+/* Oculta el texto por defecto del input file */
+input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* Asegura que el label esté encima para el click */
+}
+
+/* Estilos para el label personalizado */
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #f9423a;
+    color: white;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.file-name {
+    margin-left: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.fs-7 {
+    font-size: 14px;
+}
+:host ::ng-deep .mat-expansion-panel-body {
+    padding: 0 10px!important;
+    border-radius: 0;
+}
+:host ::ng-deep .mat-form-field {
+    background-color: #dc3545;
+}
+
+:host ::ng-deep .mat-form-field .mdc-text-field--filled:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-floating-label,
+:host ::ng-deep .mat-form-field .mdc-text-field--filled:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):focus .mdc-floating-label,
+:host ::ng-deep .mat-form-field .mdc-floating-label,
+:host ::ng-deep .mat-form-field .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input,
+:host ::ng-deep .mat-form-field .mat-mdc-select,
+:host ::ng-deep .mat-form-field .mat-mdc-select-arrow,
+:host ::ng-deep .mat-form-field input::placeholder {
+
+    color: white !important;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent !important;
+    border: 1px solid #f7c6c4 !important
+}
+
+:host ::ng-deep .mat-mdc-form-field-icon-suffix {
+    color: #dc3545 !important;
+    fill: #dc3545;
+}
+
+:host ::ng-deep .mat-mdc-icon-button {
+    color: #dc3545 !important;
+    fill: #dc3545 !important;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+    border-bottom-color: #dc3545;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: #dc3545;
+}
+
+:host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-floating-label {
+    color: #dc3545;
+}
+
+:host ::ng-deep .mat-mdc-form-field-focus-overlay {
+
+    background-color: #dc3545;
+}
+
+:host ::ng-deep .mat-mdc-unelevated-button:not(:disabled) {
+    color: var(--mdc-filled-button-label-text-color, var(--mat-sys-on-primary));
+    background-color: #959595;
+}
+
+:host ::ng-deep .mat-mdc-tab .mdc-tab-indicator__content--underline {
+    border-color: #f9423a;
+}
+
+:host ::ng-deep .mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+
+}
+
+:host ::ng-deep .mat-expansion-panel-header {
+
+    padding: 0 10px;
+}
+
+:host ::ng-deep .mat-expansion-panel-body {
+    padding: 0 0px 0 10px;
+}
+
+@media (max-width: 842px) {
+
+    .right-tool-top {
+        top: 70px;
+        right: 10px;
+    }
+
+    .modal-overview {
+
+        top: 165px;
+        right: 20px;
+    }
+
+    .modal-data {
+        top: 168px;
+        right: 60px;
+    }
+}
+
+@media (max-width: 720px) {
+    .modal-data {
+        top: 68px;
+        right: 0px;
+        width: 100%;
+        height: 50%;
+    }
+}

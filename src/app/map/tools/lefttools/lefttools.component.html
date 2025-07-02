@@ -1,0 +1,64 @@
+<div class="position-absolute text-center z-3" style="left:calc(50% - 36px); top:calc(50% - 36px)" *ngIf="isLoading"   >
+  <mat-spinner    diameter="50" style="width: 60px;"></mat-spinner>
+</div>
+
+
+<div class="position-absolute left-tool-top  d-flex flex-column" data-aos="fade-right" data-aos-easing="ease-in-out"
+    data-aos-duration="600">
+
+    <button class="btn   btn-left  rounded-pill mb-1 lightBeam anima-btn" mat-flat-button matTooltip="Acercar" (click)="acercar()"
+        matTooltipPosition="before" aria-label="Button" matRipple>
+        <div class="inside">
+            <mat-icon class="zoom" aria-hidden="false" aria-label="Zoom in" data-aos="fade-up" data-aos="fade-right"
+                data-aos-delay="200" data-aos-duration="2000" data-aos-easing="ease-in-out">add</mat-icon>
+        </div>
+    </button>
+
+    <button class="btn    btn-left  rounded-pill mb-1 lightBeam anima-btn" mat-icon-button matTooltip="Alejar" (click)="alejar()"
+        matTooltipPosition="before" aria-label="Button">
+        <div class="inside"> <mat-icon class="zoom" aria-hidden="false" aria-label="Zoom out" data-aos="fade-up"
+                data-aos="fade-right" data-aos-delay="200" data-aos-duration="2000"
+                data-aos-easing="ease-in-out">remove</mat-icon> </div>
+    </button>
+
+    <button class="btn    btn-left  rounded-pill mb-1 lightBeam anima-btn" mat-icon-button
+        matTooltip="Extensión Predeterminada" matTooltipPosition="before" aria-label="Button" (click)="inicio()" >
+        <div class="inside">
+            <mat-icon class="zoom" aria-hidden="false" aria-label="Extensión Predeterminada" data-aos="fade-up"
+                data-aos="fade-right" data-aos-delay="200" data-aos-duration="2000"
+                data-aos-easing="ease-in-out">home</mat-icon>
+        </div>
+    </button>
+    <button class="btn    btn-left  rounded-pill mb-1 lightBeam anima-btn" mat-icon-button matTooltip="Mi ubicación" (click)="ubicar()"
+        matTooltipPosition="before" aria-label="Button">
+        <div class="inside">
+            <mat-icon class="rotate" aria-hidden="false" aria-label="Mi ubicación" data-aos="fade-up"
+                data-aos="fade-right" data-aos-delay="200" data-aos-duration="2000"
+                data-aos-easing="ease-in-out">my_location</mat-icon>
+        </div>
+    </button>
+    <button class="btn  btn-left  rounded-pill mb-1 lightBeam anima-btn" mat-icon-button matTooltip="Extensión Anterior" (click)="vistaPrevia()"
+        matTooltipPosition="before" aria-label="Button">
+        <div class="inside">
+            <mat-icon class="left" aria-hidden="false" aria-label="Extensión Anterior" data-aos="fade-up"
+                data-aos="fade-right" data-aos-delay="200" data-aos-duration="2000"
+                data-aos-easing="ease-in-out">arrow_back</mat-icon>
+        </div>
+    </button>
+    <button class="btn  btn-left rounded-pill mb-1 lightBeam anima-btn" mat-icon-button matTooltip="Próxima Extensión" (click)="vistaPosterior()"
+        matTooltipPosition="before" aria-label="Button">
+        <div class="inside">
+            <mat-icon class="right" aria-hidden="false" aria-label="Próxima Extensión" data-aos="fade-right"
+                data-aos-delay="200" data-aos-duration="2000" data-aos-easing="ease-in-out">arrow_forward</mat-icon>
+        </div>
+    </button>
+
+    <button class="btn  btn-left rounded-pill mb-1 lightBeam anima-btn" mat-icon-button matTooltip="Imprimir"   (click)="imprimir()"
+        matTooltipPosition="before" aria-label="Button">
+        <div class="inside">
+            <mat-icon class="right" aria-hidden="false" aria-label="Imprimir" data-aos="fade-right"
+                data-aos-delay="200" data-aos-duration="2000" data-aos-easing="ease-in-out">print</mat-icon>
+        </div>
+    </button>
+
+</div>

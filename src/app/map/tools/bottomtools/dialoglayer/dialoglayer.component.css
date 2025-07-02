@@ -1,0 +1,55 @@
+
+.bg-danger {
+ 
+    background-color: #ff0000  !important;
+}
+.mat-tree {
+    display: block;
+    background-color: white;
+    padding: 0;
+}
+.tree-node
+{
+    font-size: 14px!important;
+}
+.mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background {
+    border-color: #dc3545 !important;
+    background-color: #dc3545  !important;
+ 
+  }
+ 
+  @media (max-width: 842px) {
+  [data-aos=flip-left] 
+  {
+      transform: none;
+  }
+  [data-aos^=zoom][data-aos^=zoom] {
+      opacity: 1!important;
+       
+  }
+  [data-aos=zoom-in-up] {
+      transform: inherit!important;
+  }
+  }
+
+
+:host ::ng-deep .mdc-switch__track::after,
+  :host ::ng-deep .mdc-switch:enabled:hover:not(:focus):not(:active) .mdc-switch__track::after {
+  
+    background: #dc3545 !important;
+}
+:host ::ng-deep .mdc-switch--selected .mdc-switch__icon {
+ 
+    fill: #f44336;
+}
+:host ::ng-deep .mdc-switch__track {
+   
+    height: var(--mdc-switch-track-height, 26px);
+}
+:host ::ng-deep .mat-mdc-slide-toggle .mdc-switch_handle:has(.mdc-switch_icons) {
+    width: var(--mat-switch-with-icon-handle-size, 20px);
+    height: var(--mat-switch-with-icon-handle-size, 20px);
+}
+:host ::ng-deep .mat-mdc-slide-toggle .mdc-switch--selected .mdc-switch_handle:has(.mdc-switch_icons) {
+    margin: var(--mat-switch-selected-with-icon-handle-horizontal-margin, 0 28px);
+}

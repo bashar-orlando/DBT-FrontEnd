@@ -1,0 +1,38 @@
+.mat-toolbar-row, .mat-toolbar-single-row {
+  
+    height: var(--mat-toolbar-standard-height, 30px);
+    font-size: 14px;
+}
+.mat-toolbar-multiple-rows {
+  
+    min-height: var(--mat-toolbar-standard-height, 30px);
+}
+.bg-danger {
+ 
+    background-color: #ff0000  !important;
+}
+.esriLegendServiceLabel {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+.esriLegendLayerLabel {
+    font-size: 12px;
+    font-weight: normal;
+    color: #333;
+    /* padding: 10px; */
+}  @media (max-width: 842px) {
+    [data-aos=flip-left] 
+    {
+        transform: none;
+    }
+    [data-aos^=zoom][data-aos^=zoom] {
+        opacity: 1!important;
+         
+    }
+    [data-aos=zoom-in-up] {
+        transform: inherit!important;
+    }
+    }

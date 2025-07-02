@@ -1,0 +1,116 @@
+<div class="row m-0 overflow-x-hidden overflow-y-auto bg-white px-1 py-0" style="height:calc(100% - 70px)">
+  <div class="position-absolute text-center z-3" style="left:calc(50% - 36px); top:calc(50% - 36px)" *ngIf="isLoading">
+    <mat-spinner diameter="50" style="width: 60px;"></mat-spinner>
+  </div>
+
+
+  <mat-tree #tree [dataSource]="dataSource" [childrenAccessor]="childrenAccessor" >
+    <!-- This is the tree node template for leaf nodes -->
+    <mat-tree-node class="d-flex tree-node" *matTreeNodeDef="let node" matTreeNodePadding>
+      <!-- use a disabled button to provide padding for tree leaf -->
+       <mat-checkbox class="example-margin me-auto" [checked]= "node.activa" (change)="activaLayer($event, node)" (click)="$event.stopPropagation()">{{node.name}}</mat-checkbox>
+        <mat-slide-toggle  labelPosition="after" *ngIf="node.wms" (change)="activaLayerWMS($event, node)" >wms</mat-slide-toggle>
+      
+      <!-- <div><button class="bg-transparent border-0" mat-icon-button [matMenuTriggerFor]="menu" aria-label="">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Redial</span>
+          </button>
+          <button mat-menu-item disabled>
+            <mat-icon>voicemail</mat-icon>
+            <span>Check voice mail</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
+          </button>
+        </mat-menu>
+      </div> -->
+    </mat-tree-node>
+    <!-- This is the tree node template for expandable nodes -->
+    <mat-tree-node class="d-flex  tree-node" *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
+      matTreeNodeToggle [cdkTreeNodeTypeaheadLabel]="node.idCapa">
+      <button class="bg-transparent p-0 border-0" mat-icon-button matTreeNodeToggle
+        [attr.aria-label]="'Toggle ' + node.idCapa ">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{tree.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+
+      <!-- <mat-checkbox class="example-margin me-auto" [checked]= "node.activa" (change)="node.activa = $event.checked" (click)="$event.stopPropagation()" > {{node.name}}</mat-checkbox> -->
+       <label class="example-margin me-auto">{{node.name}}</label>
+
+      <!-- <button class="bg-transparent border-0" mat-icon-button [matMenuTriggerFor]="menu2" #trigger>
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+      <mat-menu class="fs-small" style="min-width: auto !important;width: auto;" #menu2="matMenu">
+        <button mat-menu-item (click)="$event.stopPropagation()">
+          <mat-icon>zoom_in</mat-icon>
+          <span>Zoom to
+          </span>
+        </button>
+        <button mat-menu-item [matMenuTriggerFor]="opacity" (click)="$event.stopPropagation()">
+          <mat-icon>opacity</mat-icon>
+          <span>Transparency
+          </span>
+        </button>
+        <mat-menu class="p-1 px-4 text-center" style="min-width: auto !important;width: auto;" #opacity="matMenu"
+          (click)="$event.stopPropagation()" [hasBackdrop]="false">
+          <div class="w-100 d-flex">
+            <small class="me-auto" style="font-size:10px ;">Opaco</small>
+            <small style="font-size:10px ;">Transparente</small>
+          </div>
+          <mat-slider class="m-auto" min="0" max="100000" step="1000" showTickMarks discrete
+            [displayWith]="formatLabel">
+            <input (click)="$event.stopPropagation()" matSliderThumb>
+          </mat-slider>
+          <div class="w-100 d-flex">
+            <small class="me-auto" style="font-size:10px ;">0%</small>
+            <small style="font-size:10px ;">100%</small>
+          </div>
+        </mat-menu>
+        <button mat-menu-item [matMenuTriggerFor]="visibility" (click)="$event.stopPropagation()">
+          <mat-icon>preview</mat-icon>
+          <span> Set visibility range
+          </span>
+        </button>
+        <mat-menu class="p-1 px-4 text-center" style="min-width: 156px !important;width: 156px;" #visibility="matMenu">
+          <div class="w-100 d-flex">
+            <small class="me-auto" style="font-size:10px ;">Opaco</small>
+            <small style="font-size:10px ;">Transparente</small>
+          </div>
+
+          <mat-slider class="m-auto" min="0" max="100000" step="1000" showTickMarks discrete
+            [displayWith]="formatLabel">
+            <input (click)="$event.stopPropagation()" value="0" matSliderStartThumb>
+            <input (click)="$event.stopPropagation()" value="100000" matSliderEndThumb>
+          </mat-slider>
+
+          <div class="w-100 d-flex">
+            <small class="me-auto" style="font-size:10px ;">0%</small>
+            <small style="font-size:10px ;">100%</small>
+
+          </div>
+        </mat-menu>
+        <button mat-menu-item (click)="$event.stopPropagation()">
+          <mat-icon>vertical_align_top</mat-icon>
+          <span>
+            Move Up
+          </span>
+        </button>
+        <button mat-menu-item (click)="$event.stopPropagation()">
+          <mat-icon>vertical_align_bottom</mat-icon>
+          <span>
+            Move down</span>
+        </button>
+      </mat-menu> -->
+
+
+
+    </mat-tree-node>
+  </mat-tree>
+
+</div>

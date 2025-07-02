@@ -1,0 +1,462 @@
+<div class="position-absolute text-center z-3" style="left:calc(50% - 36px); top:calc(50% - 36px); display: none;"
+  #myLoading>
+  <mat-spinner diameter="50" style="width: 60px;"></mat-spinner>
+</div>
+
+<div class="position-absolute   right-tool-top  d-flex  flex-column flex-sm-row  ">
+
+  <button mat-icon-button class="btn btn-primary btn-circle rounded-pill mb-2 me-2 " (click)="clickicoexp($event)"
+    matTooltip="Pantalla Full/Exit" aria-label="Pantalla  Full/Exit">
+    <mat-icon class="text-white" aria-hidden="false" aria-label="E">{{hidex() ? 'fullscreen_exit' :
+      'fullscreen'}}</mat-icon>
+  </button>
+
+  <button mat-icon-button class="btn btn-primary btn-circle rounded-pill mb-2 me-2" (click)="hide1 = !hide1"
+    (click)="clickicopsw($event)" matTooltip="Ubicación" aria-label="Ubicación">
+    <mat-icon class="text-white" aria-hidden="false" aria-label="E">{{hide() ? 'visibility_off' :
+      'visibility'}}</mat-icon>
+  </button>
+
+  <button mat-icon-button class="btn btn-primary btn-circle rounded-pill mb-2 me-2" (click)="hide2 = !hide2"
+    (click)="clickdata($event)" matTooltip="Data" aria-label="Data">
+    <mat-icon class="text-white" aria-hidden="false" aria-label="upload_file"> <mat-icon class="text-white"
+        aria-hidden="false"> upload_file </mat-icon> </mat-icon>
+  </button>
+
+</div>
+
+<div cdkDrag class="position-absolute    modal-overview bg-white p-2 shadow "
+  [style.display]="hide1 ? 'block' : 'none'">
+  <div id="overviewDiv">
+    <div id="extentDiv"></div>
+  </div>
+
+</div>
+
+<div *ngIf="hide2" cdkDrag
+  class="position-absolute   modal-data bg-white   shadow rounded-bottom-4 border-5 border-bottom border-danger pb-2"
+  [cdkDragDisabled]="desactivarArrastre">
+
+  <mat-toolbar class="bg-danger text-white  ">
+    <mat-toolbar-row class="pe-1">
+      <mat-icon class="me-1" aria-hidden="false" aria-label="Example user verified icon">upload_file</mat-icon>
+      <span class="me-auto"> Párametros de Geoprocesos</span>
+
+
+      <button (click)="hide2 = !hide2" class=" border-0 text-white  pt-1" style="line-height: 14px;" mat-icon-button
+        matTooltip="Cerrar" matTooltipPosition="above" aria-label="Cerrar">
+        <mat-icon class="close text-white " aria-hidden="false" aria-label="Cerrar">close_small</mat-icon>
+      </button>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div class="overflow-x-hidden overflow-y-auto  " style="height:calc(100% - 30px)">
+    <mat-accordion>
+      <mat-expansion-panel class="rounded-0 w-100" (opened)="panelOpenState.set(true)"
+        (closed)="panelOpenState.set(false)" [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> 1. Seleccione temáticas </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <mat-form-field class="w-100 ">
+          <mat-label>
+            Temática por entidad</mat-label>
+          <mat-select #institucionSelect [ngModel]="listaInstitucionDefecto"
+            (selectionChange)="cambiaInstitucion($event)">
+            @for (institucion of listaInstitucion; track institucion) {
+            <mat-option [value]="institucion.value">{{institucion.text}}</mat-option>
+            }
+
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-100" (mouseenter)="desactivarArrastre = true"
+          (mouseleave)="desactivarArrastre = false">
+          <mat-label>Capas por entidad</mat-label>
+          <mat-chip-grid #entityChipGrid aria-label="Entity selection">
+            @for (entity of entities(); track $index) {
+            <mat-chip-row (removed)="removeEntity(entity)">
+              {{entity}}
+              <button matChipRemove [attr.aria-label]="'remove ' + entity">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            }
+          </mat-chip-grid>
+          <!-- <input name="currentEntity" placeholder="Agregar capas por entidad..." #entityInput [formControl]="entityCtrl"
+            [matChipInputFor]="entityChipGrid" [matAutocomplete]="entityAuto"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addEntity($event)" /> -->
+          <input name="currentEntity" placeholder="Agregar capas por entidad..." #entityInput [formControl]="entityCtrl"
+            [matChipInputFor]="entityChipGrid" [matAutocomplete]="entityAuto"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
+          <mat-autocomplete #entityAuto="matAutocomplete" (optionSelected)="selectedEntity($event)">
+            @for (capas of filteredEntities | async; track capas) {
+            <mat-option [value]="capas">{{capas}}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+
+
+        <mat-form-field class="w-100" (mouseenter)="desactivarArrastre = true"
+          (mouseleave)="desactivarArrastre = false">
+          <mat-label>Diversas capas de Interés</mat-label>
+          <mat-chip-grid #interestChipGrid aria-label="Interest selection">
+            @for (interest of interests(); track $index) {
+            <mat-chip-row (removed)="removeInterest(interest)">
+              {{interest}}
+              <button matChipRemove [attr.aria-label]="'remove ' + interest">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            }
+          </mat-chip-grid>
+          <!-- <input name="currentInterest" placeholder="Agregar capas de Interés..." #interestInput
+            [formControl]="interestCtrl" [matChipInputFor]="interestChipGrid" [matAutocomplete]="interestAuto"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addInterest($event)" /> -->
+          <input name="currentInterest" placeholder="Agregar capas de Interés..." #interestInput
+            [formControl]="interestCtrl" [matChipInputFor]="interestChipGrid" [matAutocomplete]="interestAuto"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
+          <mat-autocomplete #interestAuto="matAutocomplete" (optionSelected)="selectedInterest($event)">
+            @for (interest of filteredInterests | async; track interest) {
+            <mat-option [value]="interest">{{interest}}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel class="rounded-0 w-100" (opened)="panelOpenState.set(true)"
+        (closed)="panelOpenState.set(false)" [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> 2. Seleccione la herramienta</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="w-100 p-0">
+          <mat-tab-group>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="tab-icon">upload</mat-icon>
+              </ng-template>
+              <h6 class="my-2  pb-2   text-center w-100 border-bottom border-secondary">Búsqueda por carga de archivos
+              </h6>
+
+              <!-- <div class="d-block text-center">
+            <span class="badge text-bg-light fw-light p-2 border  border-secondary" #myLayerDisponibles_file>
+              {{layerConsultar}} capas disponibles por consultar
+            </span>
+          </div> -->
+
+
+              <div class="row m-0">
+                <div class="col-12 col-md-6 mb-1 px-1">
+                  <mat-form-field class="w-100">
+                  <mat-label>Tipos de Archivos</mat-label>
+                    <mat-select class="mb-2" 
+                    [ngModel]="busquedaCargaDefecto" 
+                    (selectionChange)="cambiarTipoArchivo($event)"
+                    #tipoArchivoSelect >
+                      @for (Typefile of Typefiles; track Typefile) {
+                      <mat-option [value]="Typefile.value">{{Typefile.viewValue}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field> 
+
+                </div>
+                <div class="col-12 col-md-6 mb-1 px-1" *ngIf="busquedaCargaDefectoVisible">
+                  <mat-form-field class="w-100">
+                  <mat-label>
+                    Sistema de coordenadas</mat-label>
+                    <mat-select class="mb-2" 
+                    [ngModel]="busquedaCoordenadasDefecto"
+                    #tipoArchivoSistemaSelect 
+                    >
+                      @for (sistemacoord of sistemacoords; track sistemacoord) {
+                      <mat-option [value]="sistemacoord.value">{{sistemacoord.viewValue}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field> 
+
+                </div>
+              </div>
+
+              <div class="p-2">
+
+
+                <div class="w-100   text-center">
+                  <div class="d-flex my-2">
+                    <label for="archivoBtn" class="custom-file-upload d-flex   fs-7 text-center">
+                      <mat-icon class="me-1 fs-5">folder_open</mat-icon> Buscar Archivo
+                    </label>
+                    <input type="file" id="archivoBtn" #archivoBtn (change)="onFileSelected($event)">
+                    <div class="p-2 bg-light border border-secondary flex-grow-1 ">
+                      <span *ngIf="nombreArchivo" class="file-name">{{ nombreArchivo }}</span>
+                      <span *ngIf="!nombreArchivo"> Seleccione archivo
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- <span class="badge text-bg-light fw-light p-2 border  border-secondary mb-1"> El archivo debe ser en
+                    coordenadas WGS84 geográfica</span> -->
+
+                  <div class="d-block text-center">
+                    <hr>
+                    <button (click)="procesarGP('file')" class="w-auto m-auto btn-primary my-2 me-2 " mat-flat-button>
+                      <mat-icon class="ms-1">settings</mat-icon> Ejecutar Proceso</button>
+
+                    <button class="w-auto m-auto btn  btn-dark rounded-pill my-2 " mat-flat-button
+                      (click)="limpiarFeature()">
+                      <mat-icon class="ms-1">delete</mat-icon> Limpiar</button>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">draw</mat-icon>
+              </ng-template>
+
+              <h6 class="my-2  pb-2   text-center w-100 border-bottom border-secondary">Búsqueda por dibujo en mapa</h6>
+
+              <!-- <div class="d-block text-center">
+            <span class="badge text-bg-light fw-light p-2 border  border-secondary" #myLayerDisponibles_dibujo>
+              {{layerConsultar}} capas disponibles por consultar
+            </span>
+          </div> -->
+
+              <div class="p-2">
+                <div class="w-100  text-center ">
+
+                  <button class="w-auto  m-auto  my-2 {{style() ? 'btn-seconday' : 'btn-primary'}} " mat-flat-button
+                    (click)="dibujarMapa()"> <mat-icon class="ms-1">brush</mat-icon>
+                    Dibujar en el mapa </button>
+
+                  <span class="badge text-bg-light fw-light p-2 border  border-secondary mb-1"> Dibuje en el área de
+                    consulta
+                    en el mapa</span>
+
+                  <div class="d-block text-center">
+                    <hr>
+                    <button (click)="procesarGP('dibujo')" class="w-auto m-auto btn-primary my-2 me-2" mat-flat-button>
+                      <mat-icon class="ms-1">settings</mat-icon> Ejecutar Proceso</button>
+
+                    <button class="w-auto m-auto btn-seconday my-2 " mat-flat-button (click)="limpiarFeature()">
+                      <mat-icon class="ms-1">delete</mat-icon> Limpiar</button>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">location_on</mat-icon>
+              </ng-template>
+              <h6 class="my-2  pb-2   text-center w-100 border-bottom border-secondary">Búsqueda por coordenadas</h6>
+
+              <!-- <div class="d-block text-center">
+            <span class="badge text-bg-light fw-light p-2 border  border-secondary" #myLayerDisponibles_buffer>
+              {{layerConsultar}} capas disponibles por consultar
+            </span>
+          </div> -->
+
+              <div class="p-2">
+                <h6 class="my-2   px-1 text-start w-100 "> Ingrese coordenadas
+                </h6>
+                <div class="row m-0">
+                  <div class="col-12 col-md-6 mb-1 px-1">
+                    <mat-form-field class="w-100 ">
+                      <mat-label>
+                        Sistema de coordenadas</mat-label>
+                      <mat-select #busquedaCoordenadasSistema [ngModel]="busquedaCoordenadasDefecto">
+                        @for (sistemacoord of sistemacoords; track sistemacoord) {
+                        <mat-option [value]="sistemacoord.value">{{sistemacoord.viewValue}}</mat-option>
+                        }
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-12 col-md-6 px-1">
+                    <mat-form-field class="w-100">
+                      <mat-label>Radio</mat-label>
+                      <input matInput type="number" placeholder="Ingresar Radio" value="200" required min="0" max="360"
+                        #busquedaCoordenadasRadio>
+
+                    </mat-form-field>
+
+                  </div>
+                  <div class="col-6 mb-1 px-1">
+                    <mat-form-field class="w-100">
+                      <mat-label>Norte</mat-label>
+                      <input matInput type="number" placeholder="Norte" value="8660431" required min="0"
+                        max="1000000000" #busquedaCoordenadasNorte>
+
+                    </mat-form-field>
+
+                  </div>
+                  <div class="col-6 mb-1 px-1">
+                    <mat-form-field class="w-100">
+                      <mat-label>Este</mat-label>
+                      <input matInput type="number" placeholder="Este" value="281946" required min="0" max="1000000000"
+                        #busquedaCoordenadasEste>
+
+                    </mat-form-field>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="d-block text-center">
+                <hr>
+                <button class="w-auto m-auto btn-primary my-2 me-2" mat-flat-button (click)="buscarCoodenada()">
+                  <mat-icon class="ms-1">settings</mat-icon>
+                  Ejecutar Proceso</button>
+                <button class="w-auto m-auto btn-seconday my-2 " mat-flat-button (click)="limpiarFeature()">
+                  <mat-icon class="ms-1">delete</mat-icon> Limpiar</button>
+              </div>
+
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">search</mat-icon>
+
+              </ng-template>
+              <h6 class="my-2  pb-2   text-center w-100 border-bottom border-secondary">Búsqueda por capas SBN</h6>
+
+              <!-- <div class="d-block text-center">
+            <span class="badge text-bg-light fw-light p-2 border  border-secondary" #myLayerDisponibles_sbn>
+              {{layerConsultar}} capas disponibles por consultar
+            </span>
+          </div> -->
+
+              <div class="p-2">
+                <h6 class="my-2   px-1 text-start w-100 "> Seleccione e ingrese el criterio de búsqueda</h6>
+                <mat-form-field class="w-100 mb-1">
+                  <mat-label>
+                    Seleccione una capa SBN</mat-label>
+                  <mat-select #capaSBN>
+                    @for (campoprocesa of campoprocesar; track campoprocesa) {
+                    <mat-option [value]="campoprocesa.value">{{campoprocesa.text}}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field class="w-100  ">
+                  <mat-label>Ingrese un dato</mat-label>
+                  <input class="w-100" matInput placeholder="Ingrese un dato a buscar" #busquedaCapasSBN>
+                  <mat-icon matSuffix>search</mat-icon>
+
+                </mat-form-field>
+                <div class="d-block text-center">
+                  <hr>
+                  <button class="w-auto m-auto btn-primary my-2 me-2" mat-flat-button (click)="busquedaSBN()">
+                    <mat-icon class="ms-1">settings</mat-icon> Ejecutar Proceso</button>
+
+                  <button class="w-auto m-auto btn-seconday my-2 " mat-flat-button (click)="limpiarFeature()">
+                    <mat-icon class="ms-1">delete</mat-icon> Limpiar</button>
+                </div>
+
+              </div>
+
+            </mat-tab>
+
+          </mat-tab-group>
+
+
+
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel class="rounded-0 w-100" (opened)="panelOpenState.set(true)"
+        (closed)="panelOpenState.set(false)" [expanded]="mostrarDiv">
+        <mat-expansion-panel-header>
+          <mat-panel-title> 3. Resultados </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div *ngIf="mostrarDiv">
+          <mat-toolbar class="bg-danger text-white  ">
+            <mat-toolbar-row class="pe-1">
+              <mat-icon class="me-1" aria-hidden="false" aria-label="Example user verified icon">list</mat-icon>
+              <span class="me-auto"> Features resultantes</span>
+            </mat-toolbar-row>
+          </mat-toolbar>
+          <div class="border border-0 rounded-bottom px-0 hv-100 overflow-y-auto modal-hv">
+            <mat-accordion>
+
+              <mat-expansion-panel *ngFor="let instituciones of responseLayer" class="rounded-0"
+                (opened)="panelOpenState.set(false)" (closed)="panelOpenState.set(false)">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <h6 class="text-danger mx-0 fw-bold" mat-subheader>{{instituciones.institucion}}</h6>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div *ngFor="let capas of instituciones.capas">
+                  <h6 class="my-2 fw-normal text-danger">{{capas.nombreCapa}} - Registros {{capas.features.length}}</h6>
+                  <mat-list class="mt-0 pt-0">
+                    <div class="d-flex w-100">
+
+                      <button class="btn btn-icon btn-light btn-circle rounded-pill me-1" matTooltip="Descargar excel"
+                        matTooltipPosition="before" (click)="descargarFeatures('excel', capas)">
+                        <mat-icon class="fw-light">style</mat-icon>
+                      </button>
+
+                      <button class="btn btn-icon btn-light btn-circle rounded-pill me-1" matTooltip="Descargar kml"
+                        matTooltipPosition="before" (click)="descargarFeatures('kml', capas)">
+                        <mat-icon class="fw-light">insert_link</mat-icon>
+                      </button>
+
+                      <button class="btn  btn-icon btn-light btn-circle rounded-pill me-1"
+                        matTooltip="Descargar shapefile" matTooltipPosition="before"
+                        (click)="descargarFeatures('shp', capas)">
+                        <mat-icon class="fw-light">download</mat-icon>
+                      </button>
+
+                    </div>
+
+                    <div *ngFor="let features of capas.features">
+                      <mat-list-item class="p-0">
+                        <div class="d-flex w-100">
+                          <small class="me-auto" style="white-space: normal;">
+                            <!-- {{capas.alias}} {{features.attributes[capas.displayFieldName]}} -->
+                            @if (features.attributes[capas.displayFieldName].trim() == ""){
+                            {{capas.alias}} Sin Datos
+                            }@else{
+                            {{features.attributes[capas.displayFieldName]}}
+                            }
+                          </small>
+
+                          <button class="btn btn-icon btn-light btn-circle rounded-pill me-1" matTooltip="Zoom"
+                            (click)="accionesFeatures('zoom', capas, features)">
+                            <mat-icon class="fw-light">search</mat-icon>
+                          </button>
+
+                          <button class="btn  btn-icon btn-light btn-circle rounded-pill  me-1"
+                            matTooltip="Descargar kml" (click)="accionesFeatures('kml', capas, features)">
+                            <mat-icon class="fw-light">insert_link</mat-icon>
+                          </button>
+
+                          <button class="btn  btn-icon btn-light btn-circle rounded-pill  me-1"
+                            matTooltip="Descargar shapefile" (click)="accionesFeatures('download', capas, features)">
+                            <mat-icon class="fw-light">download</mat-icon>
+                          </button>
+                        </div>
+                      </mat-list-item>
+                      <mat-divider></mat-divider>
+                    </div>
+                  </mat-list>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </div>
+</div>

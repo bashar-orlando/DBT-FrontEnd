@@ -1,0 +1,219 @@
+.left-tool-top
+{
+top: 95PX;
+left: 25px;
+}
+.left-tool-w
+{
+    width: auto;
+}
+
+.btn-circle
+{
+    width: 40px;
+    height: 40px;
+    padding: initial;
+    line-height: 50px;
+}
+.btn-left{
+    width: 60px;
+    height: 40px;
+    padding: initial;
+    line-height: 50px;
+    border-radius: 0 50px 50px 50px !important;
+}
+.inside {
+    background-color : #f9423a;
+    color: #fff;
+   
+    transition: all 1s ease-in-out;
+ 
+    border-radius: 0 50px 50px 50px !important;
+    width: 54px;
+    height: 38px;
+  }
+  .inside:hover {
+    background-color : var(--color-sbn-5);
+  }
+.lightBeam {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightBeam .inside {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .lightBeam .inside {
+    margin: 2px;
+  }
+.lightBeam::before {
+    content: "";
+    display: block;
+    background: linear-gradient(90deg, rgba(20, 136, 252, 0) 0%, rgb(255 255 255 / 80%) 40%, rgb(253, 253, 253) 50%, rgba(20, 136, 252, 0) 100%);
+    height: 200px;
+    width: 40px;
+    transform: translate(0);
+    position: absolute;
+    animation: rotate 3s linear forwards infinite;
+    z-index: 0;
+    top: 50%;
+    transform-origin: top center;
+  }
+  lightBeam:hover > .lightBeam::before
+  {
+    background: linear-gradient(90deg, rgba(20, 136, 252, 0) 0%, rgb(255 255 255 / 80%) 40%, rgb(255 255 255) 100%, rgba(20, 136, 252, 0) 100%)
+  }
+
+@keyframes rotate {
+    0% {
+      transform: rotate(0) scaleX(4);
+    }
+
+    25% {
+      transform: rotate(90deg) scaleX(1);
+    }
+
+    50% {
+      transform: rotate(180deg) scaleX(4);
+    }
+
+    75% {
+      transform: rotate(270deg) scaleX(1);
+    }
+
+    100% {
+      transform: rotate(360deg) scaleX(4);
+    }
+  }
+  .anima-btn .inside .zoom
+{transition:all .1s ease-in-out infinite;
+  transform: scale(1); 
+}
+
+.anima-btn:hover > .inside .zoom {
+  animation: zoominout 3s linear forwards infinite;
+}
+
+@keyframes zoominout {
+  0% {
+    transform: scale(1); 
+  }
+
+  25% {
+    transform: scale(1.2); 
+  }
+
+  50% {
+    transform: scale(1); 
+  }
+
+  75% {
+    transform: scale(1.2); 
+  }
+
+  100% {
+    transform: scale(1); 
+  }
+}
+
+.anima-btn .inside .left
+{transition:all .1s ease-in-out infinite;
+    margin-right:0px ;
+}
+
+.anima-btn:hover > .inside .left {
+  animation: animaleft 3s linear forwards infinite;
+}
+
+@keyframes animaleft  {
+  0% {
+    margin-right:0px ;
+  }
+
+  25% {
+    margin-right:10px ;
+  }
+
+  50% {
+    margin-right:0px ;
+  }
+
+  75% {
+    margin-right:10px ;
+  }
+
+  100% {
+    margin-right:0px ;
+  }
+}
+
+.anima-btn .inside .right
+{transition:all .1s ease-in-out infinite;
+    margin-left:0px ;
+}
+
+.anima-btn:hover > .inside .right {
+  animation: animaright 3s linear forwards infinite;
+}
+
+@keyframes animaright  {
+  0% {
+    margin-left:0px ;
+  }
+
+  25% {
+    margin-left:10px ;
+  }
+
+  50% {
+    margin-left:0px ;
+  }
+
+  75% {
+    margin-left:10px ;
+  }
+
+  100% {
+    margin-left:0px ;
+  }
+}
+.anima-btn .inside .rotate
+{transition:all .3s ease-in-out infinite;
+    
+}
+
+.anima-btn:hover > .inside .rotate {
+    animation: animarotate 3s linear forwards infinite;  
+  }
+  @keyframes animarotate  {
+    0% {
+        rotate: 0deg;
+    }
+  
+    25% {
+        rotate: 180deg;
+    }
+  
+    50% {
+        rotate: 360deg;
+    }
+  
+    75% {
+        rotate: 180deg;
+    }
+  
+    100% {
+        rotate: 0deg;
+    }
+  }
+  @media (max-width: 842px) {
+  .left-tool-top[_ngcontent-ng-c1236513183] {
+    top: 95PX;
+    left: 15px;
+}}

@@ -1,0 +1,146 @@
+<div class="position-fixed bottom-0  rounded-pill mb-5    bottom-tool-w  bottom-tool-center text-center z-3 d-flex">
+
+  <div class="container-btn-bottom m-auto">
+    <mat-button-toggle-group class="mx-2" #toggleGroup="matButtonToggleGroup"
+      [hideMultipleSelectionIndicator]="hideMultipleSelectionIndicator()" multiple>
+      <mat-button-toggle #toggle1 class="btn-primary" (click)="hide1 = !hide1" (click)="clicklayer($event)"
+        value="Capas" matTooltip="Capas" matTooltipPosition="above"><mat-icon class="text-white" aria-hidden="false"
+          aria-label="Capas" fontIcon="layers"></mat-icon></mat-button-toggle>
+
+      <!-- <mat-button-toggle #toggle2  class="btn-primary" value=""    matTooltip="Zoom out"  matTooltipPosition="above" ><mat-icon  class="text-white" aria-hidden="false" aria-label="" fontIcon="flip"></mat-icon></mat-button-toggle> -->
+
+      <mat-button-toggle #toggle3 class="btn-primary" (click)="hide2 = !hide2" (click)="clickbasemap($event)"
+        value="Mapa Base" matTooltip="Mapa Base" matTooltipPosition="above"><mat-icon class="text-white"
+          aria-hidden="false" aria-label="Mapa Base" fontIcon="grid_view"></mat-icon></mat-button-toggle>
+
+      <mat-button-toggle #toggle4 class="btn-primary" (click)="hide3 = !hide3" (click)="clicklegend($event)"
+        value="Leyenda" matTooltip="Leyenda" matTooltipPosition="above"><mat-icon class="text-white" aria-hidden="false"
+          aria-label="Leyenda" fontIcon="rule"></mat-icon></mat-button-toggle>
+
+    </mat-button-toggle-group>
+  </div>
+  <button mat-icon-button class="btn btn-primary btn-circle rounded-pill mb-2 ms-2  d-md-none btn-menu"
+    matTooltip="Herramientas" matTooltipPosition="above" aria-label="Herramientas">
+    <mat-icon class="text-white" aria-hidden="false" aria-label="Herramientas"> menu</mat-icon>
+  </button>
+
+</div>
+
+
+<div *ngIf="hide1" cdkDrag class="position-absolute   layer-position layer-w   " [class]="listType1"
+  [cdkDragDisabled]="desactivarArrastre">
+  <div class="bg-white  shadow-sm rounded-bottom-4 border-5 border-bottom border-danger overflow-hidden" style=" 
+  height:calc(100% - 30px)" data-aos="flip-left" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <mat-toolbar class="bg-danger text-white  ">
+      <mat-toolbar-row class="pe-1">
+        <mat-icon class="me-1" aria-hidden="false" aria-label="Example user verified icon">layers</mat-icon>
+        <span class="me-auto"> Capas</span>
+
+
+        <button (click)="hide1 = !hide1" (click)="cerrarCapas()" class="bg-transparent border-0 text-white  pt-1"
+          style="line-height: 14px;" mat-icon-button matTooltip="Cerrar" matTooltipPosition="above" aria-label="Cerrar">
+          <mat-icon class="close" aria-hidden="false" aria-label="Cerrar">close_small</mat-icon>
+        </button>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <!--start nuevo-->
+    <div class="d-flex w-100 position-relative bg-light p-1" (mouseenter)="desactivarArrastre = true"
+      (mouseleave)="desactivarArrastre = false" >
+      <div class="me-auto my-0 p-0" >
+        <div class="content-search d-flex">
+
+          <input class="search-input  rounded-pill" matInput type="text" [(ngModel)]="value" style="display: none;">
+          @if (value) {
+          <button class="btn-close-s" matSuffix mat-icon-button aria-label="Limpiar" (click)="value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+          }
+        </div>
+      </div>
+      <div>
+        <!-- <button mat-icon-button class="btn btn-primary btn-circle rounded-pill   me-2" matTooltip="Buscar"
+          aria-label="Buscar">
+          <mat-icon class="text-white" aria-hidden="false" aria-label="search"> <mat-icon class="text-white"
+              aria-hidden="false"> search </mat-icon> </mat-icon>
+        </button> -->
+
+
+        <button mat-icon-button class="btn btn-primary btn-circle rounded-pill  me-2" [matMenuTriggerFor]="menu2"
+          matTooltip="Opciones" aria-label="Opciones">
+          <mat-icon class="text-white" aria-hidden="false" aria-label="menu"> <mat-icon class="text-white"
+              aria-hidden="false"> menu </mat-icon> </mat-icon>
+        </button>
+        <mat-menu #menu2="matMenu">
+          <button mat-menu-item (click)="activarCapas(true)">
+            <mat-icon>check_box</mat-icon>
+            <span>Activar todas las capas</span>
+          </button>
+          <button mat-menu-item (click)="activarCapas(false)">
+            <mat-icon>check_box_outline_blank</mat-icon>
+            <span>Desactivar todas las capas</span>
+          </button>
+          <button (click)="expandirTodo()" mat-menu-item>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+            <span>Expandir todas las capas</span>
+          </button>
+          <button (click)="contraerTodo()" mat-menu-item>
+            <mat-icon>keyboard_arrow_up</mat-icon>
+            <span>Contraer todas las capas</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    <!--end nuevo-->
+
+    <app-dialoglayer #myLayer [view]="view" [webmap]="webmap" [layers]="layers"></app-dialoglayer>
+
+  </div>
+</div>
+
+<div *ngIf="hide2" cdkDrag class="position-absolute   basemap-position basemap-w   " [class]="listType2">
+  <div class="bg-white  shadow-sm rounded-bottom-4 border-5 border-bottom border-danger overflow-hidden" style=" 
+  height:calc(100% - 30px)" data-aos="flip-left" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <mat-toolbar class="bg-danger text-white  ">
+      <mat-toolbar-row class="pe-1">
+        <mat-icon class="me-1" aria-hidden="false" aria-label="Example user verified icon">grid_view</mat-icon>
+        <span class="me-auto"> Mapa Base</span>
+
+
+        <button (click)="cerrar2()" (click)="hide2 = !hide2" class="bg-transparent border-0 text-white  pt-1"
+          style="line-height: 14px;" mat-icon-button matTooltip="Cerrar" matTooltipPosition="above" aria-label="Cerrar">
+          <mat-icon class="close" aria-hidden="false" aria-label="Cerrar">close_small</mat-icon>
+        </button>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <app-basemap [view]="view" [webmap]="webmap" [layers]="layers"></app-basemap>
+
+  </div>
+</div>
+
+
+<div *ngIf="hide3" cdkDrag class="position-absolute   legend-position legend-w  " [class]="listType3">
+
+  <div class="bg-white  shadow-sm rounded-bottom-4 border-5 border-bottom border-danger overflow-hidden" style=" 
+    height:calc(100% - 30px)" data-aos="flip-left" data-aos-easing="ease-in-out" data-aos-duration="500">
+    <mat-toolbar class="bg-danger text-white">
+      <mat-toolbar-row class="pe-1">
+        <mat-icon class="me-1" aria-hidden="false" aria-label="Example user verified icon">rule</mat-icon>
+        <span class="me-auto">
+          Leyenda
+        </span>
+
+
+        <button (click)="cerrar3()" (click)="hide3 = !hide3" class="bg-transparent border-0 text-white  pt-1"
+          style="line-height: 14px;" mat-icon-button matTooltip="Cerrar" matTooltipPosition="above" aria-label="Cerrar">
+          <mat-icon class="close" aria-hidden="false" aria-label="Cerrar">close_small</mat-icon>
+        </button>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <app-legend [view]="view" [webmap]="webmap" [layers]="layers"></app-legend>
+
+  </div>
+</div>

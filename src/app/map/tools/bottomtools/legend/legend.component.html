@@ -1,0 +1,182 @@
+<div class=" m-0 overflow-x-hidden overflow-y-auto bg-white p-3 position-relative" style=" 
+    height:calc(100% - 30px)" data-aos="zoom-in-up">
+  <div class="position-absolute text-center z-3" style="left:calc(50% - 30px); top:calc(50% - 40px)" *ngIf="isLoading">
+    <mat-spinner diameter="50" style="width: 60px;"></mat-spinner>
+  </div>
+
+  <div id="Mapa-Leyenda"></div>
+
+  <!-- <div data-dojo-attach-point="operationalLayersPart">
+    <div id="esri_dijit_Legend_0" widgetid="esri_dijit_Legend_0" style="position: relative;">
+      <div id="esri_dijit_Legend_0_mil_actos_9260" class="esriLegendService" style="display: block;">
+        <table width="95%">
+          <tbody>
+            <tr>
+              <td align="left"><span class="esriLegendServiceLabel">Actos</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="esri_dijit_Legend_0_mil_actos_9260_1" class="" style="display: block;">
+          <table width="95%" class="esriLegendLayerLabel">
+            <tbody>
+              <tr>
+                <td align="left">Vigentes</td>
+              </tr>
+            </tbody>
+          </table>
+          <table cellpadding="0" cellspacing="10" width="95%" class="esriLegendLayer">
+            <tbody>
+              <tr>
+                <td>
+                  <table cellpadding="0" cellspacing="0" width="95%" class="esriLegendLayer">
+                    <tbody>
+                      <tr>
+                        <td width="35" align="center"><img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAU0lEQVQ4je3UsQ2AMAwF0bOUJbKNmTyZJh7jU4GgQsiIyldZlvVKt7UQH9aOwYyZgST8BM2YvbNlwAiGhLfn03cVWGCBBf4ISngEIwPdHux1kW0HEQkVYwZFB2EAAAAASUVORK5CYII="
+                            border="0" style="opacity:1"></td>
+                        <td>
+                          <table width="95%" dir="ltr">
+                            <tbody>
+                              <tr>
+                                <td align="left"></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="esri_dijit_Legend_0_mil_actos_9260_2" class="" style="display: block;">
+          <table width="95%" class="esriLegendLayerLabel">
+            <tbody>
+              <tr>
+                <td align="left">No Vigentes</td>
+              </tr>
+            </tbody>
+          </table>
+          <table cellpadding="0" cellspacing="10" width="95%" class="esriLegendLayer">
+            <tbody>
+              <tr>
+                <td>
+                  <table cellpadding="0" cellspacing="0" width="95%" class="esriLegendLayer">
+                    <tbody>
+                      <tr>
+                        <td width="35" align="center"><img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAyUlEQVQ4ja3VMQ6DMAyF4d9RZiaWiAtU6shZcpeqU0fuwlm6d0JiwQtTL5AuBQkBaSHxaD199mDJdhi4i1AQqRC4iPD6kSmBzopQOMdtL6iKF+HpHO1epu+5Wos3hsLGpqriAf7BqoqHKs0ueBSbepvgWWwTTMFWYCq2AHNgM5gLA7AhUIrkwUKgtLk2U8WHAFaEMQcGIMK4e9hHMedoVak3wTPY1FuBKdgKTMUWYA5sBnNh8D3sXNi0YWcMhSpNLDi9AVXqSOb9AZbaii+gmvR+AAAAAElFTkSuQmCC"
+                            border="0" style="opacity:1"></td>
+                        <td>
+                          <table width="95%" dir="ltr">
+                            <tbody>
+                              <tr>
+                                <td align="left"></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="esri_dijit_Legend_0_wms_lim_politicos_200" class="esriLegendService" style="display: block;">
+        <table width="95%">
+          <tbody>
+            <tr>
+              <td align="left"><span class="esriLegendServiceLabel">Límites Políticos</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="esri_dijit_Legend_0_wms_lim_politicos_200_0" class="" style="display: block;">
+          <table width="95%" class="esriLegendLayerLabel">
+            <tbody>
+              <tr>
+                <td align="left">Departamento</td>
+              </tr>
+            </tbody>
+          </table>
+          <table cellpadding="0" cellspacing="10" width="95%" class="esriLegendLayer">
+            <tbody>
+              <tr>
+                <td>
+                  <table cellpadding="0" cellspacing="0" width="95%" class="esriLegendLayer">
+                    <tbody>
+                      <tr>
+                        <td width="35" align="center"><img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAR0lEQVQ4je3UsQkAMAhE0RPcy4zmaMlkl8aAvZLKD4fdK1WSRGMadwM4RcsArAceEfGKRtIz2NaAAw444F/Q4p9VsgyuWLkL3TUPyVXn5t0AAAAASUVORK5CYII="
+                            border="0" style="opacity:1"></td>
+                        <td>
+                          <table width="95%" dir="ltr">
+                            <tbody>
+                              <tr>
+                                <td align="left"></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="esri_dijit_Legend_0_wms_lim_politicos_200_1" class="" style="display: block;">
+          <table width="95%" class="esriLegendLayerLabel">
+            <tbody>
+              <tr>
+                <td align="left">Provincia</td>
+              </tr>
+            </tbody>
+          </table>
+          <table cellpadding="0" cellspacing="10" width="95%" class="esriLegendLayer">
+            <tbody>
+              <tr>
+                <td>
+                  <table cellpadding="0" cellspacing="0" width="95%" class="esriLegendLayer">
+                    <tbody>
+                      <tr>
+                        <td width="35" align="center"><img
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAUklEQVQ4je3UsQ0AIQwEwT2JwmiGOtDXYRdDZ/4E0YARkTe7ZMJr7h5crAFExAespNUlzbbHGmOkQDMDOOC1CiywwALfgn3/WaZ+QEkTmFkR4AfjcBB1T07itgAAAABJRU5ErkJggg=="
+                            border="0" style="opacity:1"></td>
+                        <td>
+                          <table width="95%" dir="ltr">
+                            <tbody>
+                              <tr>
+                                <td align="left"></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="esri_dijit_Legend_0_wms_lim_politicos_200_2" class="" style="display: none;">
+          <table width="95%" class="esriLegendLayerLabel">
+            <tbody>
+              <tr>
+                <td align="left">Distrito</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="esri_dijit_Legend_0_msg" class="esriLegendMsg" style="display: none;">No legend</div>
+    </div>
+  </div> -->
+
+</div>

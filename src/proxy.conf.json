@@ -1,0 +1,19 @@
+{
+  "/api": {
+    "target": "https://portalgeo.sbn.gob.pe",
+    "secure": false,
+    "changeOrigin": true
+  },
+   
+  
+  "/geosrv/rest": {
+    "target": "https://portalgeo.sbn.gob.pe/geosrv/rest",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/geosrv/rest": ""
+    }
+  }
+  
+}
