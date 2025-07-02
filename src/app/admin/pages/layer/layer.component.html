@@ -1,0 +1,112 @@
+<div class="container-fluid overflow-auto hv-100 p-0">
+  <h1 class="h4   d-flex align-items-center  my-2 text-dark ps-3" data-aos="fade-up" data-aos-duration="300"
+    style="height: 39px;"><mat-icon class="me-2" aria-hidden="false" aria-label="layers">layers</mat-icon> Capas</h1>
+
+
+  <mat-toolbar class="bg-gray-alt p-0 m-0 rounded-0">
+    <mat-form-field class="searchadmin" style="max-width: 300px;">
+      <mat-label>Institución</mat-label>
+      <mat-select [(ngModel)]="selectedInstitucion" (ngModelChange)="applyFilter()">
+        <mat-option value="Todos">Todos</mat-option>
+        <mat-option *ngFor="let institucion of instituciones" [value]="institucion.institucion">
+          {{ institucion.institucion }}
+        </mat-option>
+      </mat-select>
+      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="rounded-0 searchadmin" style="max-width: 300px;">
+      <mat-label>Filtro</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  
+    <span class="spacer"></span>
+    <button matTooltip="Agregar Capa" matTooltipPosition="above" data-aos="fade-up" data-aos-duration="300"
+      (click)="openDialogedit()" mat-icon-button
+      class="btn btn-sm btn-success rounded-pill text-white me-2 d-flex align-items-center px-3" aria-label="">
+      <mat-icon>add</mat-icon> <span class="d-none d-md-block ms-1">Agregar</span>
+    </button>
+  
+  </mat-toolbar>
+
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Institución Column -->
+      <ng-container matColumnDef="institucion">
+        <th class="w-50" mat-header-cell *matHeaderCellDef mat-sort-header> Institución </th>
+        <td mat-cell *matCellDef="let row"> {{row.institucion}} </td>
+      </ng-container>
+
+      <!-- Capas Column -->
+      <ng-container matColumnDef="nombre">
+        <th class="w-50" mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+        <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+      </ng-container>
+
+      <!-- Capas Column -->
+      <ng-container matColumnDef="tipo">
+        <th class="w-50" mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
+        <td mat-cell *matCellDef="let row"> {{row.tipo}} </td>
+      </ng-container>
+
+      <!-- Capas Column -->
+      <ng-container matColumnDef="srs">
+        <th class="w-50" mat-header-cell *matHeaderCellDef mat-sort-header> Sistema<br>Coordenadas </th>
+        <td mat-cell *matCellDef="let row"> {{row.srs}} </td>
+      </ng-container>
+
+
+      <!-- Capas Column -->
+      <ng-container matColumnDef="disponible">
+        <th class="w-50" mat-header-cell *matHeaderCellDef mat-sort-header> Disponible </th>
+        <td mat-cell *matCellDef="let row"> {{(row.disponible == 1 ? 'SI' : 'NO')}} </td>
+      </ng-container>
+
+      <!-- Capas Column -->
+      <ng-container matColumnDef="orden_lista">
+        <th class="w-50" mat-header-cell *matHeaderCellDef mat-sort-header> Orden<br>Arbol </th>
+        <td mat-cell *matCellDef="let row"> {{row.orden_lista}} </td>
+      </ng-container>
+
+      <!-- Capas Column -->
+      <ng-container matColumnDef="orden_dibujo">
+        <th class="w-50" mat-header-cell *matHeaderCellDef mat-sort-header> Orden<br>Dibujo </th>
+        <td mat-cell *matCellDef="let row"> {{row.orden_dibujo}} </td>
+      </ng-container>
+
+      <!-- edita Column -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let row"> <button (click)="openDialogedit(row)" mat-icon-button
+            class="btn btn-sm btn-success rounded-pill text-white me-2 d-flex align-items-center px-3" aria-label=""
+            matTooltip="Editar" matTooltipPosition="before">
+            <mat-icon>edit</mat-icon>
+          </button> </td>
+      </ng-container>
+
+      <!-- eliminar Column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let row"> <button (click)="openDialogdelete(row)" mat-icon-button
+            class="btn btn-sm btn-danger rounded-pill text-white me-2 d-flex align-items-center px-3" aria-label=""
+            matTooltip="Eliminar" matTooltipPosition="before">
+            <mat-icon>delete</mat-icon>
+          </button> </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Seleccionar elementos de Capas"></mat-paginator>
+  </div>
+</div>

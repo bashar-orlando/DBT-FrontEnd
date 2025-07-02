@@ -1,0 +1,33 @@
+html, body {
+    height: 100%;
+    overflow: auto !important;
+}
+.mat-drawer
+{
+
+    width: 15%!important;
+}
+ 
+
+.right-tool-top
+{
+top: 7PX;
+right: 10px;
+}
+.mat-icon {
+     
+    line-height: 20px;
+    width: auto!important;
+    height: auto!important
+    ;
+}
+.btn-circle{line-height:30px!important }
+
+@media (max-width: 720px) {
+    .mat-drawer
+    {
+    
+        width: 70px!important;
+    }
+         
+}

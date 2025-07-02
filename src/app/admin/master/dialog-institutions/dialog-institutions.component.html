@@ -1,0 +1,33 @@
+<h2 class="fs-4" mat-dialog-title>{{ data ? 'Editar Institución' : 'Agregar Institución' }}</h2>
+
+<mat-dialog-content class="mat-typography">
+  <mat-form-field class="d-block mb-1" appearance="fill">
+    <mat-label>Nombre de la insittución</mat-label>
+    <input matInput placeholder="Escriba aquí" [(ngModel)]="institucion">
+    <mat-icon matSuffix>edit</mat-icon>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field class="d-block mb-1" appearance="fill">
+    <mat-label>Nro Orden</mat-label>
+    <input matInput placeholder="Escriba aquí" [(ngModel)]="orden" (keypress)="validateFormat($event)">
+    <mat-icon matSuffix>edit</mat-icon>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+
+
+  <div class="d-flex my-3">
+    <!--  checked="true"-->
+    <mat-slide-toggle class="me-2 w-50" labelPosition="after" [(ngModel)]="activa">Disponible</mat-slide-toggle>
+  </div>
+</mat-dialog-content>
+<hr>
+
+<mat-dialog-actions class="pt-0" align="end">
+  <button mat-button mat-dialog-close
+    class="btn btn-sm btn-danger rounded-pill text-white me-2 d-flex align-items-center px-3"><mat-icon class="me-1"
+      matSuffix>cancel</mat-icon> Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial
+    class="btn btn-sm btn-success rounded-pill text-white me-2 d-flex align-items-center px-3" (click)="guardar()">
+    <mat-icon class="me-1" matSuffix>save</mat-icon> Guardar</button>
+</mat-dialog-actions>

@@ -1,0 +1,54 @@
+diff --git a/node_modules/@mapbox/shp-write/src/geojson.js b/node_modules/@mapbox/shp-write/src/geojson.js
+index be8f28c..46904e6 100644
+--- a/node_modules/@mapbox/shp-write/src/geojson.js
++++ b/node_modules/@mapbox/shp-write/src/geojson.js
+@@ -4,6 +4,7 @@ module.exports.multiline = justType("MultiLineString", "POLYLINE");
+ module.exports.polygon = justType("Polygon", "POLYGON");
+ module.exports.multipolygon = justType("MultiPolygon", "POLYGON");
+ 
++
+ /**
+  * Generate a function that returns an object with the geometries, properties, and type of the given GeoJSON type
+  * @param {string} type the GeoJSON type
+@@ -11,13 +12,40 @@ module.exports.multipolygon = justType("MultiPolygon", "POLYGON");
+  * @returns {(gj: { features: Feature[] }) => { geometries: number[] | number[][] | number[][][] | number[][][][], properties: {Object.<string, string>}, type: string }}
+  */
+ function justType(gjType, shpType) {
++ 
+   return function (gj) { 
++    
++    alert(123)
++    
++      // var oftype = gj.features.filter(isType(gjType));
++      // var geometries;
++      // if (TYPE === 'POLYGON') {
++      //     geometries = [oftype.map(justCoords)];
++      // } else if (TYPE === 'POLYLINE') {
++      //     geometries = oftype.map(function(t) { return [justCoords(t)]; });
++      // } else {
++      //     geometries = oftype.map(justCoords);
++      // }
++      // return {
++      //     geometries: geometries,
++      //     properties: oftype.map(justProps),
++      //     type: TYPE
++      // }
++
++    // var oftype = gj.features.filter(isType(gjType));
++    // return {
++    //   geometries: shpType === 'POLYLINE' ? [oftype.map(justCoords)] : oftype.map(justCoords),
++    //   properties: oftype.map(justProps),
++    //   type: shpType,
++    // };
++
+     var oftype = gj.features.filter(isType(gjType));
+     return {
+-      geometries: shpType === 'POLYLINE' ? [oftype.map(justCoords)] : oftype.map(justCoords),
++      geometries: shpType === 'POLYLINE' ? oftype.map(l => justCoords(l)) : oftype.map(justCoords),
+       properties: oftype.map(justProps),
+       type: shpType,
+     };
++    
+   };
+ }
+ 

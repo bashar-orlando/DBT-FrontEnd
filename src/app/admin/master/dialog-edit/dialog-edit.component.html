@@ -1,0 +1,127 @@
+<h2 mat-dialog-title>{{ data ? 'Editar Capa' : 'Agregar Capa' }}</h2>
+<mat-dialog-content class="mat-typography">
+
+  <mat-form-field class="d-block mb-1" appearance="fill">
+    <mat-label>Nombre de la capa</mat-label>
+    <input matInput placeholder="Nombre" [(ngModel)]="nombre">
+    <mat-icon matSuffix>layers</mat-icon>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field class="d-block mb-1">
+    <mat-label>Institución
+    </mat-label>
+    <mat-select [(ngModel)]="id_institucion">
+      <mat-option [value]="0">Seleccione Institución</mat-option>
+      <mat-option *ngFor="let institucion of instituciones" [value]="institucion.id">
+        {{ institucion.institucion }}
+      </mat-option>
+    </mat-select>
+    <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+  </mat-form-field>
+
+  <div class="d-flex">
+
+    <mat-form-field class="w-50 mb-1 me-1" appearance="fill">
+      <mat-label>Tipo Servicio
+      </mat-label>
+      <mat-select [(ngModel)]="tipo">
+        <mat-option [value]="0">Seleccione Tipo Servicio</mat-option>
+        <mat-option *ngFor="let tipo of tipos" [value]="tipo.tipo">
+          {{ tipo.tipo }}
+        </mat-option>
+      </mat-select>
+      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="w-50 mb-1 me-1" appearance="fill">
+      <mat-label>Sistema de coordenadas
+      </mat-label>
+      <mat-select [(ngModel)]="srs">
+        <mat-option [value]="0">Seleccione Sistema de Coordenadas</mat-option>
+        <mat-option *ngFor="let srs of srss" [value]="srs.srs">
+          {{ srs.srs }}
+        </mat-option>
+      </mat-select>
+      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+    </mat-form-field>
+
+  </div>
+
+
+
+
+  <mat-form-field class="d-block mb-1" appearance="fill">
+    <mat-label>Url del servicio
+    </mat-label>
+    <input matInput placeholder="Ingresar Url" [(ngModel)]="url_servicio">
+    <mat-icon matSuffix>link</mat-icon>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field class="d-block mb-1" appearance="fill">
+    <mat-label>Ids de Servicios
+    </mat-label>
+    <input matInput placeholder="Ingresar Ids." [(ngModel)]="servicios">
+    <mat-icon matSuffix>fingerprint</mat-icon>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+
+  <div class="d-flex">
+    <mat-form-field class="w-50 mb-1 me-1" appearance="fill">
+      <mat-label>Orden en lista</mat-label>
+      <input matInput placeholder="Ingresar orden en lista" [(ngModel)]="orden_lista">
+      <mat-icon matSuffix>swap_vert</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="w-50 mb-1" appearance="fill">
+      <mat-label>Orden de dibujo</mat-label>
+      <input matInput placeholder="Ingresar orden de dibujo" [(ngModel)]="orden_dibujo">
+      <mat-icon matSuffix>done_all</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div class="d-flex my-3">
+    <mat-slide-toggle class="me-2 w-50" labelPosition="after" [(ngModel)]="wms">Cuenta con un servicio tipo WMS</mat-slide-toggle>
+  </div>
+
+  <mat-form-field class="d-block mb-1" appearance="fill" *ngIf="wms">
+    <mat-label>Url del servicio - WMS
+    </mat-label>
+    <input matInput placeholder="Ingresar Url" [(ngModel)]="url_wms">
+    <mat-icon matSuffix>link</mat-icon>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field class="d-block mb-1" appearance="fill" *ngIf="wms">
+    <mat-label>Ids de Servicios - WMS
+    </mat-label>
+    <input matInput placeholder="Ingresar Ids." [(ngModel)]="servicio_wms">
+    <mat-icon matSuffix>fingerprint</mat-icon>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+
+
+
+  <div class="d-flex my-3">
+    <!-- checked="true" -->
+    <mat-slide-toggle class="me-2 w-50" labelPosition="after" [(ngModel)]="disponible">Disponible</mat-slide-toggle>
+
+    <mat-slide-toggle class=" w-50" labelPosition="after" [(ngModel)]="activa">Activa</mat-slide-toggle>
+
+    <mat-slide-toggle class=" w-50" labelPosition="after" [(ngModel)]="consulta">Consulta</mat-slide-toggle>
+  </div>
+
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions class="pt-0" align="end">
+  <button mat-button mat-dialog-close
+    class="btn btn-sm btn-danger rounded-pill text-white me-2 d-flex align-items-center px-3"><mat-icon class="me-1"
+      matSuffix>cancel</mat-icon> Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial
+    class="btn btn-sm btn-success rounded-pill text-white me-2 d-flex align-items-center px-3" (click)="guardar()">
+    <mat-icon class="me-1" matSuffix>save</mat-icon> Guardar
+  </button>
+</mat-dialog-actions>

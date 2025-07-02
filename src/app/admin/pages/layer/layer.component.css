@@ -1,0 +1,19 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+  .mat-icon {
+     
+ 
+    width: auto!important;
+    height: auto!important
+    ;
+}
+ 
+  .color-sbn-alt
+  {
+    color: var(--color-sbn-alt) !important;
+  }
+
+.bg-gray-alt
+{background: #e0e2ec !important;}
+.mdc-line-ripple:before, .mdc-line-ripple:after {border:0!important}

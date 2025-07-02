@@ -1,0 +1,91 @@
+<div class="container-fluid overflow-auto hv-100 p-0">
+  <h1 class="h4  d-flex align-items-center  my-2  text-dark ps-3" data-aos="fade-up" data-aos-duration="300"
+    style="height: 39px;"><mat-icon class="me-2" aria-hidden="false"
+      aria-label="holiday_village">holiday_village</mat-icon> Instituciones</h1>
+
+  <mat-toolbar class="bg-gray-alt p-0 m-0 rounded-0">
+    <mat-form-field class="rounded-0 searchadmin" style="max-width: 300px;">
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Escriba aquí" #input>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <span class="spacer"></span>
+    <button matTooltip="Agregar Institución" matTooltipPosition="above" data-aos="fade-up" data-aos-duration="300"
+      (click)="openDialogedit()" mat-icon-button
+      class="btn btn-sm btn-success rounded-pill text-white me-2 d-flex align-items-center px-3" aria-label="">
+      <mat-icon>add</mat-icon> <span class="d-none d-md-block ms-1">Agregar</span>
+    </button>
+  </mat-toolbar>
+
+
+
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Name ID -->
+      <ng-container matColumnDef="id">
+        <th class="w-10" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="institucion">
+        <th class="w-50" mat-header-cell *matHeaderCellDef mat-sort-header> Institución </th>
+        <td mat-cell *matCellDef="let row"> {{row.institucion}} </td>
+      </ng-container>
+
+      <!-- Fruit Column -->
+      <ng-container matColumnDef="capas">
+        <th class="w-100" mat-header-cell *matHeaderCellDef mat-sort-header> Capas registradas </th>
+        <td mat-cell *matCellDef="let row"> {{row.capas}} </td>
+      </ng-container>
+
+
+      <!-- Fruit Column -->
+      <ng-container matColumnDef="activa">
+        <th class="w-100" mat-header-cell *matHeaderCellDef mat-sort-header> Disponible </th>
+        <td mat-cell *matCellDef="let row"> {{(row.activa == 1 ? 'SI' : 'NO')}}  </td>
+      </ng-container>
+
+      <!-- Fruit Column -->
+      <ng-container matColumnDef="orden">
+        <th class="w-100" mat-header-cell *matHeaderCellDef mat-sort-header> Nro Orden </th>
+        <td mat-cell *matCellDef="let row"> {{row.orden}} </td>
+      </ng-container>
+
+
+      <!-- layer Column -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let row"> <button (click)="openDialogedit(row)" mat-icon-button
+            class="btn btn-sm btn-success rounded-pill text-white me-2 d-flex align-items-center px-3" aria-label=""
+            matTooltip="Editar" matTooltipPosition="before">
+            <mat-icon>edit</mat-icon>
+          </button> </td>
+      </ng-container>
+      <!-- layer Column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let row"> <button (click)="openDialogdelete(row)" mat-icon-button
+            class="btn btn-sm btn-danger rounded-pill text-white me-2 d-flex align-items-center px-3" aria-label=""
+            matTooltip="Eliminar" matTooltipPosition="before">
+            <mat-icon>delete</mat-icon>
+          </button> </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 25, 100]"
+      aria-label="Seleccionar elementos de Instituciones"></mat-paginator>
+  </div>
+</div>

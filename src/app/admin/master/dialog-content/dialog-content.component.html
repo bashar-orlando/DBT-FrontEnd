@@ -1,0 +1,20 @@
+ 
+<h2 mat-dialog-title>
+    <mat-icon class="me-2"  aria-hidden="false" aria-label="warning">warning</mat-icon>  Confirme
+</h2>
+<mat-dialog-content>
+    ¿Desea eliminar el registro seleccionado?
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close class="btn btn-sm btn-danger rounded-pill text-white me-2 d-flex align-items-center px-3"
+  (click)="cancelar()"
+  >
+    <mat-icon class="me-1" matSuffix>cancel</mat-icon>No
+  </button>
+  <button mat-button mat-dialog-close cdkFocusInitial [mat-dialog-close]="true"  
+    class="btn btn-sm btn-success rounded-pill text-white me-2 d-flex align-items-center px-3" 
+    (click)="confirmar()"
+  >
+    <mat-icon class="me-1" matSuffix>delete_forever</mat-icon>Si
+  </button>
+</mat-dialog-actions>

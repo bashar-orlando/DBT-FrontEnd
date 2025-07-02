@@ -1,0 +1,41 @@
+
+
+.link
+{
+    color:white;
+    background:var(--color-sbn-alt) !important;;
+    padding:10px 20px;
+    display: block;
+}
+
+.active
+{
+    background:white !important;
+    color:var(--color-sbn-alt) !important;;
+    padding:10px 20px;
+    display: block;
+}
+.active .mat-icon,.active .inside
+{  color:var(--color-sbn-alt) !important;;}
+.active:before
+{
+    content: "";
+    position: absolute;
+    right: -16px;
+    top: 6.5px;
+    width: 0;
+    height: 0;
+    border-left: 31.5px solid transparent;
+    border-right: 0px solid transparent;
+    border-top: 31.5px solid var(--color-sbn-alt);
+    transform: rotate(-135deg);}
+
+    @media (max-width: 720px) {
+         .logo-mobile{
+        overflow: hidden;
+        width: 45px !important;
+        margin: auto;
+    }  
+    }
+   
+    

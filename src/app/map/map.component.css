@@ -1,0 +1,34 @@
+ .esri-view {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#mapViewNode {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.container-map
+{
+    overflow: hidden;
+}
+.h-map
+{
+    height: 100%;
+}
+@media (max-width: 842px) {
+    .container-map
+{
+    overflow-y: auto!important;
+    overflow-x: auto!important;
+}
+.h-map
+{
+    height: 100%;
+}
+}
+ 

@@ -1,0 +1,151 @@
+.logo {
+    height: 50px;
+    min-width: 50px;
+    background-color: #fff;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+    -webkit-box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.2);
+    margin-right: auto;
+    padding: 0 10px;
+    margin-top: -2px;
+    flex: 0 0 auto;
+    
+}
+.content-header
+{
+    inset: 17px auto auto 15px;
+    width: auto;
+    height: 46px;
+    padding: 0px;
+    margin: auto;
+    z-index: auto;
+ 
+    visibility: visible;
+    background-color: var(--color-sbn-1)  !important;
+    display: flex ;
+        max-width: calc(100% - 300px);
+}
+.content-header .title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #f1f1f1;
+    line-height: 46px;
+     display: block;
+     padding: 0 5px;
+     font-family: Verdana, Arial, sans-serif;
+}
+.content-search {
+    inset: auto;
+    
+    height: 40px;
+    padding: 0px;
+    margin: auto;
+    z-index: 101;
+    position: relative;
+    padding: 0px 5px 0 0;
+}
+.h-40
+{height: 40px !important;}
+.example-form {
+    min-width: 50px;
+    max-width: 200px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .search-input {
+    max-width: 100%;
+    width: 220px;border: 0px;font-size: 14px;
+  }
+  .search-input:focus,
+  .search-input:focus-visible {
+    background-color:  #efedf0;;
+    border: 0!important;
+    outline:0 !important;
+    padding: 0  10px;
+  }
+ .btn-filter
+ {
+    border-radius: 50% 0 0 50%;
+    padding: 5px;
+}
+.btn-filter:hover, .btn-filter:focus,.btn-filter:focus-visible
+{
+   border-radius: 50% 0 0 50%;
+   padding: 5px;
+}
+ 
+.btn-close-s
+{ padding: 5px;}
+ 
+.mdc-list-item__primary-text{
+    font-size: 12px!important;
+}
+.btn-search{
+    margin: 3px 0 0 0;
+    background: red;
+    color: white !important;
+    width: 34px;
+    height: 34px;padding: 5px;
+}
+
+
+
+.logo{    height: 40px;
+  width: 40px !important;
+  overflow: hidden;
+  padding: 0;
+  margin: 3px;
+  min-width: 40px;
+  height: 40px!important;
+}
+  .logo a img {
+    margin:6px 0 0 7px!important;
+    height:28px!important
+}
+.search-input {
+  max-width: 100%;
+  width: 100%;
+}
+.content-search  {
+  width: 90%;
+  margin: auto 5px;
+}
+ input[type="search"] ,
+::ng-deep input
+::ng-deep .content-header input,
+::ng-deep #mapBuscador input,
+:host([number-button-type=vertical]) input,
+:host([icon][scale="m"]) input, input[type="search" i] ,input[type="search"],
+::ng-deep :host([icon][scale="m"]) input,
+::ng-deep  input[type="search"] {
+    
+    border: 0!important;
+}
+.attribute-custom-style
+{width: 140px;}
+::ng-deep .esri-search {
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    display: flex
+;
+}
+::ng-deep .esri-search  input[type="search"] {
+    
+    border: 0!important;
+}
+@media (max-width: 842px) {
+  .content-header  {
+   
+    max-width: 100%;
+    width: calc(100% - 30px);
+ 
+ }}      
+ 

@@ -1,0 +1,4 @@
+:host ::ng-deep .mat-mdc-unelevated-button:not(:disabled), .btn-dark {
+    color: var(--mdc-filled-button-label-text-color, var(--mat-sys-on-primary));
+    background-color: #959595!important;
+}

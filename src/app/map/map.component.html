@@ -1,0 +1,14 @@
+<div class="position-absolute text-center z-3" style="left:calc(50% - 36px); top:calc(50% - 36px)" *ngIf="isLoading"   >
+  <mat-spinner    diameter="50" style="width: 60px;"></mat-spinner>
+</div>
+
+<div class="container-fluid bg-white h-100 p-0 container-map">
+    <div class="w-100 h-map" #mapViewNode></div>
+
+    <app-header [view]="view" [webmap]="map" [layers]="layers"></app-header>
+    <app-lefttools [view]="view" [webmap]="map"></app-lefttools>
+    <app-righttools [view]="view" [webmap]="map" [layers]="layers"></app-righttools>
+    <app-bottomtools [view]="view" [webmap]="map" [layers]="layers"></app-bottomtools>
+    <app-coordenadas [view]="view" [webmap]="map"></app-coordenadas>   
+
+  </div>

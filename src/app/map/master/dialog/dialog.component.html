@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>
+  <mat-icon class="me-2" aria-hidden="false" aria-label="warning">warning</mat-icon> Advertencia
+</h2>
+<mat-dialog-content>
+  {{mensaje}}
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close
+    class="btn btn-sm btn-primary  rounded-pill  text-white  me-2 d-flex align-items-center px-3"><mat-icon class="me-1"
+      matSuffix>check</mat-icon>Ok</button>
+  <button mat-button mat-dialog-close cdkFocusInitial [mat-dialog-close]="true"
+    class="btn btn-sm btn-dark   rounded-pill text-white  me-2 d-flex align-items-center px-3"><mat-icon class="me-1"
+      matSuffix>cancel</mat-icon> Cerrar</button>
+</mat-dialog-actions>
